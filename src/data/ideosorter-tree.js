@@ -1,4 +1,4 @@
-/** Exact question wording and answer labels adapted from the supplied Ideosorter source. */
+/** Exact question wording, answer labels, and result semantics adapted from the supplied Ideosorter source. */
 export const ideosorterTree = [
   {
     "id": "private_property",
@@ -6,11 +6,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "theo"
+        "target": {
+          "kind": "question",
+          "id": "theo"
+        }
       },
       {
         "text": "No",
-        "next": "market"
+        "target": {
+          "kind": "question",
+          "id": "market"
+        }
       }
     ]
   },
@@ -20,11 +26,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "theocracy"
+        "target": {
+          "kind": "result",
+          "id": "theocracy"
+        }
       },
       {
         "text": "No",
-        "next": "distributism"
+        "target": {
+          "kind": "question",
+          "id": "distributism"
+        }
       }
     ]
   },
@@ -34,11 +46,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "distributism"
+        "target": {
+          "kind": "result",
+          "id": "distributism"
+        }
       },
       {
         "text": "No",
-        "next": "conditional_land_ownership"
+        "target": {
+          "kind": "question",
+          "id": "conditional_land_ownership"
+        }
       }
     ]
   },
@@ -48,11 +66,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Conditional",
-        "next": "scope_of_government2"
+        "target": {
+          "kind": "question",
+          "id": "scope_of_government2"
+        }
       },
       {
         "text": "Unconditional",
-        "next": "scope_of_government1"
+        "target": {
+          "kind": "question",
+          "id": "scope_of_government1"
+        }
       }
     ]
   },
@@ -62,15 +86,24 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "watchman_state"
+        "target": {
+          "kind": "question",
+          "id": "watchman_state"
+        }
       },
       {
         "text": "No",
-        "next": "tradvals"
+        "target": {
+          "kind": "question",
+          "id": "tradvals"
+        }
       },
       {
         "text": "The state shouldn't exist",
-        "next": "counter_economics"
+        "target": {
+          "kind": "question",
+          "id": "counter_economics"
+        }
       }
     ]
   },
@@ -80,11 +113,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "minarch"
+        "target": {
+          "kind": "result",
+          "id": "minarch"
+        }
       },
       {
         "text": "No",
-        "next": "welfare"
+        "target": {
+          "kind": "question",
+          "id": "welfare"
+        }
       }
     ]
   },
@@ -94,11 +133,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "welfare_needed"
+        "target": {
+          "kind": "question",
+          "id": "welfare_needed"
+        }
       },
       {
         "text": "No",
-        "next": "limited_gov_tradvals"
+        "target": {
+          "kind": "question",
+          "id": "limited_gov_tradvals"
+        }
       }
     ]
   },
@@ -108,11 +153,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Welfare",
-        "next": "socbert"
+        "target": {
+          "kind": "result",
+          "id": "socbert"
+        }
       },
       {
         "text": "Not needed",
-        "next": "bhl"
+        "target": {
+          "kind": "result",
+          "id": "bhl"
+        }
       }
     ]
   },
@@ -122,11 +173,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "paleobert"
+        "target": {
+          "kind": "result",
+          "id": "paleobert"
+        }
       },
       {
         "text": "No",
-        "next": "libert"
+        "target": {
+          "kind": "result",
+          "id": "libert"
+        }
       }
     ]
   },
@@ -136,11 +193,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "tradauthstate"
+        "target": {
+          "kind": "question",
+          "id": "tradauthstate"
+        }
       },
       {
         "text": "No",
-        "next": "govbasicneeds"
+        "target": {
+          "kind": "question",
+          "id": "govbasicneeds"
+        }
       }
     ]
   },
@@ -150,11 +213,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "corp_cap"
+        "target": {
+          "kind": "question",
+          "id": "corp_cap"
+        }
       },
       {
         "text": "No",
-        "next": "strong_safety_net"
+        "target": {
+          "kind": "question",
+          "id": "strong_safety_net"
+        }
       }
     ]
   },
@@ -164,11 +233,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Capitalism",
-        "next": "markreg"
+        "target": {
+          "kind": "question",
+          "id": "markreg"
+        }
       },
       {
         "text": "Corporatism",
-        "next": "unions_vs_state"
+        "target": {
+          "kind": "question",
+          "id": "unions_vs_state"
+        }
       }
     ]
   },
@@ -178,11 +253,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "socnat"
+        "target": {
+          "kind": "result",
+          "id": "socnat"
+        }
       },
       {
         "text": "No",
-        "next": "nazcap"
+        "target": {
+          "kind": "result",
+          "id": "nazcap"
+        }
       }
     ]
   },
@@ -192,11 +273,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Unions",
-        "next": "natsynd"
+        "target": {
+          "kind": "result",
+          "id": "natsynd"
+        }
       },
       {
         "text": "State",
-        "next": "clergygov"
+        "target": {
+          "kind": "question",
+          "id": "clergygov"
+        }
       }
     ]
   },
@@ -206,11 +293,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "clerfash"
+        "target": {
+          "kind": "result",
+          "id": "clerfash"
+        }
       },
       {
         "text": "No",
-        "next": "racesuperior"
+        "target": {
+          "kind": "question",
+          "id": "racesuperior"
+        }
       }
     ]
   },
@@ -220,11 +313,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "nazi"
+        "target": {
+          "kind": "result",
+          "id": "nazi"
+        }
       },
       {
         "text": "No",
-        "next": "fascism"
+        "target": {
+          "kind": "result",
+          "id": "fascism"
+        }
       }
     ]
   },
@@ -234,11 +333,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "patcon"
+        "target": {
+          "kind": "result",
+          "id": "patcon"
+        }
       },
       {
         "text": "No",
-        "next": "intervgov"
+        "target": {
+          "kind": "question",
+          "id": "intervgov"
+        }
       }
     ]
   },
@@ -248,11 +353,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "neocon"
+        "target": {
+          "kind": "result",
+          "id": "neocon"
+        }
       },
       {
         "text": "No",
-        "next": "paleocon"
+        "target": {
+          "kind": "result",
+          "id": "paleocon"
+        }
       }
     ]
   },
@@ -262,11 +373,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "socdem"
+        "target": {
+          "kind": "result",
+          "id": "socdem"
+        }
       },
       {
         "text": "No",
-        "next": "econreg"
+        "target": {
+          "kind": "question",
+          "id": "econreg"
+        }
       }
     ]
   },
@@ -276,11 +393,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "lib"
+        "target": {
+          "kind": "result",
+          "id": "lib"
+        }
       },
       {
         "text": "No",
-        "next": "neolib"
+        "target": {
+          "kind": "result",
+          "id": "neolib"
+        }
       }
     ]
   },
@@ -290,11 +413,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "agorism"
+        "target": {
+          "kind": "result",
+          "id": "agorism"
+        }
       },
       {
         "text": "No",
-        "next": "coop_ancap"
+        "target": {
+          "kind": "question",
+          "id": "coop_ancap"
+        }
       }
     ]
   },
@@ -304,11 +433,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "leftroth"
+        "target": {
+          "kind": "result",
+          "id": "leftroth"
+        }
       },
       {
         "text": "No",
-        "next": "ancap"
+        "target": {
+          "kind": "result",
+          "id": "ancap"
+        }
       }
     ]
   },
@@ -318,15 +453,24 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "geolib"
+        "target": {
+          "kind": "result",
+          "id": "geolib"
+        }
       },
       {
         "text": "No",
-        "next": "landwelfare"
+        "target": {
+          "kind": "question",
+          "id": "landwelfare"
+        }
       },
       {
         "text": "The state shouldn't exist",
-        "next": "angeo"
+        "target": {
+          "kind": "result",
+          "id": "angeo"
+        }
       }
     ]
   },
@@ -336,11 +480,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "socgeo"
+        "target": {
+          "kind": "result",
+          "id": "socgeo"
+        }
       },
       {
         "text": "No",
-        "next": "georgism"
+        "target": {
+          "kind": "result",
+          "id": "georgism"
+        }
       }
     ]
   },
@@ -350,11 +500,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "statesoc"
+        "target": {
+          "kind": "question",
+          "id": "statesoc"
+        }
       },
       {
         "text": "No",
-        "next": "marx"
+        "target": {
+          "kind": "question",
+          "id": "marx"
+        }
       }
     ]
   },
@@ -364,15 +520,24 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "tito"
+        "target": {
+          "kind": "result",
+          "id": "tito"
+        }
       },
       {
         "text": "No",
-        "next": "marksoc"
+        "target": {
+          "kind": "result",
+          "id": "marksoc"
+        }
       },
       {
         "text": "The state shouldn't exist",
-        "next": "mutualaid"
+        "target": {
+          "kind": "question",
+          "id": "mutualaid"
+        }
       }
     ]
   },
@@ -382,11 +547,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "racism"
+        "target": {
+          "kind": "question",
+          "id": "racism"
+        }
       },
       {
         "text": "No",
-        "next": "lwma"
+        "target": {
+          "kind": "result",
+          "id": "lwma"
+        }
       }
     ]
   },
@@ -396,11 +567,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "natan"
+        "target": {
+          "kind": "result",
+          "id": "natan"
+        }
       },
       {
         "text": "No",
-        "next": "mutualism"
+        "target": {
+          "kind": "result",
+          "id": "mutualism"
+        }
       }
     ]
   },
@@ -410,11 +587,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "transstate"
+        "target": {
+          "kind": "question",
+          "id": "transstate"
+        }
       },
       {
         "text": "No",
-        "next": "techno"
+        "target": {
+          "kind": "question",
+          "id": "techno"
+        }
       }
     ]
   },
@@ -424,11 +607,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "soc_directstate1"
+        "target": {
+          "kind": "question",
+          "id": "soc_directstate1"
+        }
       },
       {
         "text": "No",
-        "next": "labvouch"
+        "target": {
+          "kind": "question",
+          "id": "labvouch"
+        }
       }
     ]
   },
@@ -438,11 +627,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Workers",
-        "next": "rev_ed"
+        "target": {
+          "kind": "question",
+          "id": "rev_ed"
+        }
       },
       {
         "text": "State",
-        "next": "vanguard"
+        "target": {
+          "kind": "question",
+          "id": "vanguard"
+        }
       }
     ]
   },
@@ -452,11 +647,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "vanguard_ed"
+        "target": {
+          "kind": "question",
+          "id": "vanguard_ed"
+        }
       },
       {
         "text": "No",
-        "next": "orthmarx"
+        "target": {
+          "kind": "result",
+          "id": "orthmarx"
+        }
       }
     ]
   },
@@ -466,11 +667,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "castro"
+        "target": {
+          "kind": "result",
+          "id": "castro"
+        }
       },
       {
         "text": "No",
-        "next": "cultural_revolution"
+        "target": {
+          "kind": "question",
+          "id": "cultural_revolution"
+        }
       }
     ]
   },
@@ -480,11 +687,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "3worlds"
+        "target": {
+          "kind": "question",
+          "id": "3worlds"
+        }
       },
       {
         "text": "No",
-        "next": "nep"
+        "target": {
+          "kind": "question",
+          "id": "nep"
+        }
       }
     ]
   },
@@ -494,11 +707,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "mao"
+        "target": {
+          "kind": "result",
+          "id": "mao"
+        }
       },
       {
         "text": "No",
-        "next": "mlm"
+        "target": {
+          "kind": "result",
+          "id": "mlm"
+        }
       }
     ]
   },
@@ -508,11 +727,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "deng"
+        "target": {
+          "kind": "result",
+          "id": "deng"
+        }
       },
       {
         "text": "No",
-        "next": "socinone"
+        "target": {
+          "kind": "question",
+          "id": "socinone"
+        }
       }
     ]
   },
@@ -522,11 +747,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "aboveall1"
+        "target": {
+          "kind": "question",
+          "id": "aboveall1"
+        }
       },
       {
         "text": "No",
-        "next": "posadism"
+        "target": {
+          "kind": "question",
+          "id": "posadism"
+        }
       }
     ]
   },
@@ -536,11 +767,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "nazbol"
+        "target": {
+          "kind": "result",
+          "id": "nazbol"
+        }
       },
       {
         "text": "No",
-        "next": "ml"
+        "target": {
+          "kind": "result",
+          "id": "ml"
+        }
       }
     ]
   },
@@ -550,11 +787,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "posadism"
+        "target": {
+          "kind": "result",
+          "id": "posadism"
+        }
       },
       {
         "text": "No",
-        "next": "trot"
+        "target": {
+          "kind": "result",
+          "id": "trot"
+        }
       }
     ]
   },
@@ -564,11 +807,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "synd1"
+        "target": {
+          "kind": "question",
+          "id": "synd1"
+        }
       },
       {
         "text": "No",
-        "next": "mediabad"
+        "target": {
+          "kind": "question",
+          "id": "mediabad"
+        }
       }
     ]
   },
@@ -578,11 +827,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "deleon"
+        "target": {
+          "kind": "result",
+          "id": "deleon"
+        }
       },
       {
         "text": "No",
-        "next": "centplan"
+        "target": {
+          "kind": "question",
+          "id": "centplan"
+        }
       }
     ]
   },
@@ -592,11 +847,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "bordiga"
+        "target": {
+          "kind": "result",
+          "id": "bordiga"
+        }
       },
       {
         "text": "No",
-        "next": "luxem"
+        "target": {
+          "kind": "result",
+          "id": "luxem"
+        }
       }
     ]
   },
@@ -606,11 +867,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "situationist"
+        "target": {
+          "kind": "result",
+          "id": "situationist"
+        }
       },
       {
         "text": "No",
-        "next": "councom"
+        "target": {
+          "kind": "result",
+          "id": "councom"
+        }
       }
     ]
   },
@@ -620,11 +887,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "ancol"
+        "target": {
+          "kind": "result",
+          "id": "ancol"
+        }
       },
       {
         "text": "No",
-        "next": "agriculture"
+        "target": {
+          "kind": "question",
+          "id": "agriculture"
+        }
       }
     ]
   },
@@ -634,11 +907,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "synd2"
+        "target": {
+          "kind": "question",
+          "id": "synd2"
+        }
       },
       {
         "text": "No",
-        "next": "anprim"
+        "target": {
+          "kind": "result",
+          "id": "anprim"
+        }
       }
     ]
   },
@@ -648,11 +927,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "ansynd"
+        "target": {
+          "kind": "result",
+          "id": "ansynd"
+        }
       },
       {
         "text": "No",
-        "next": "ancom"
+        "target": {
+          "kind": "result",
+          "id": "ancom"
+        }
       }
     ]
   },
@@ -662,11 +947,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "technocracy"
+        "target": {
+          "kind": "result",
+          "id": "technocracy"
+        }
       },
       {
         "text": "No",
-        "next": "electsoc"
+        "target": {
+          "kind": "question",
+          "id": "electsoc"
+        }
       }
     ]
   },
@@ -676,11 +967,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Electoralism",
-        "next": "demsoc"
+        "target": {
+          "kind": "result",
+          "id": "demsoc"
+        }
       },
       {
         "text": "Revolution",
-        "next": "soc_directstate2"
+        "target": {
+          "kind": "question",
+          "id": "soc_directstate2"
+        }
       }
     ]
   },
@@ -690,11 +987,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Workers",
-        "next": "agriculture_industrial"
+        "target": {
+          "kind": "question",
+          "id": "agriculture_industrial"
+        }
       },
       {
         "text": "State",
-        "next": "esobullshit"
+        "target": {
+          "kind": "question",
+          "id": "esobullshit"
+        }
       }
     ]
   },
@@ -704,11 +1007,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Dasein",
-        "next": "4theory"
+        "target": {
+          "kind": "result",
+          "id": "4theory"
+        }
       },
       {
         "text": "Class/Nation",
-        "next": "bankjews"
+        "target": {
+          "kind": "question",
+          "id": "bankjews"
+        }
       }
     ]
   },
@@ -718,11 +1027,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "strasser"
+        "target": {
+          "kind": "result",
+          "id": "strasser"
+        }
       },
       {
         "text": "No",
-        "next": "aboveall2"
+        "target": {
+          "kind": "question",
+          "id": "aboveall2"
+        }
       }
     ]
   },
@@ -732,11 +1047,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "nazbol"
+        "target": {
+          "kind": "result",
+          "id": "nazbol"
+        }
       },
       {
         "text": "No",
-        "next": "statesoc"
+        "target": {
+          "kind": "result",
+          "id": "statesoc"
+        }
       }
     ]
   },
@@ -746,11 +1067,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "agsoc"
+        "target": {
+          "kind": "result",
+          "id": "agsoc"
+        }
       },
       {
         "text": "No",
-        "next": "synd3"
+        "target": {
+          "kind": "question",
+          "id": "synd3"
+        }
       }
     ]
   },
@@ -760,11 +1087,17 @@ export const ideosorterTree = [
     "options": [
       {
         "text": "Yes",
-        "next": "synd"
+        "target": {
+          "kind": "result",
+          "id": "synd"
+        }
       },
       {
         "text": "No",
-        "next": "libsoc"
+        "target": {
+          "kind": "result",
+          "id": "libsoc"
+        }
       }
     ]
   }
