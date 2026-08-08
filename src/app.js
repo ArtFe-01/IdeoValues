@@ -14,6 +14,7 @@ import { subjectDefinitions } from "./data/trees.js";
 
 const STORAGE_KEY = "ideovalues-state-v4-audited";
 const SCHEMA_VERSION = 4;
+const STORAGE_PREFIX = "ideovalues-state-";
 const app = document.querySelector("#app");
 const profileAction = document.querySelector("#profile-action");
 
@@ -71,6 +72,19 @@ function saveState() {
   }
 }
 
+function clearPersistedAttempts() {
+  try {
+    const keysToRemove = [];
+    for (let index = 0; index < window.localStorage.length; index += 1) {
+      const key = window.localStorage.key(index);
+      if (key?.startsWith(STORAGE_PREFIX)) keysToRemove.push(key);
+    }
+    keysToRemove.forEach((key) => window.localStorage.removeItem(key));
+  } catch {
+    storageAvailable = false;
+  }
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -118,6 +132,7 @@ function initializeSubject(subject) {
 
 function reset() {
   if (!window.confirm("Start over and clear this profile?")) return;
+  clearPersistedAttempts();
   state = freshState();
   saveState();
   render({ focus: "h1" });
