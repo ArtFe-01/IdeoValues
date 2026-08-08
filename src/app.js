@@ -319,24 +319,12 @@ function renderHeader(eyebrow, title, copy = "") {
 
 function renderHome() {
   const completed = progressCount();
-  return `<section class="page-shell home-page">
+  return `<section class="main-container home-page">
+    <div class="title-container"><h1 tabindex="-1">IdeoValues</h1></div>
     ${persistenceNotice()}
-    <div class="hero-grid">
-      <div class="hero-copy">
-        <div class="eyebrow">A political values map</div>
-        <h1 tabindex="-1">Politics is a <em>combination</em>, not a coordinate.</h1>
-        <p class="lede">IdeoValues follows your choices through a living decision tree. Choose the routes that genuinely fit, explore their consequences, and leave with a profile made from your own combination of values.</p>
-        <div class="hero-actions"><button class="primary-button" data-action="start">${completed ? "Continue assessment" : "Start assessment"}<span>→</span></button><span class="microcopy">4 independent subjects · up to 3 compatible routes at a branch</span></div>
-      </div>
-      <div class="hero-diagram" aria-label="Illustration of a branching decision tree">
-        <div class="diagram-label">YOUR PATH</div><div class="diagram-root"></div>
-        <div class="diagram-branch branch-a"><span>material life</span></div><div class="diagram-branch branch-b"><span>power</span></div><div class="diagram-branch branch-c"><span>culture</span></div>
-        <div class="diagram-node node-a">01</div><div class="diagram-node node-b">02</div><div class="diagram-node node-c">03</div>
-        <div class="diagram-caption">no single axis<br><strong>more than one answer can be true</strong></div>
-      </div>
-    </div>
-    <div class="section-heading"><div><div class="eyebrow">The four lenses</div><h2>Build your profile one subject at a time.</h2></div><span class="progress-pill">${completed}/4 complete</span></div>
-    <div class="subject-grid">${subjectDefinitions.map(renderSubjectCard).join("")}</div>
+    <div class="intro-copy"><p>A political values test based on a decision tree. Follow the answers that fit you and build a profile from their combination.</p></div>
+    <div class="button-container"><button class="primary-button" data-action="start">${completed ? "Continue" : "Start"}</button></div>
+    <p class="progress-copy">${completed}/4 subjects complete · answers are saved during an active attempt</p>
   </section>`;
 }
 
@@ -387,27 +375,28 @@ function renderStatus() {
 function renderQuiz() {
   const subject = currentSubject();
   const subjectState = currentSubjectState();
-  return `<section class="page-shell quiz-page ${subject.color}">
+  return `<section class="main-container quiz-page ${subject.color}">
     ${persistenceNotice()}
-    ${renderSubjectProgress()}
-    <div class="quiz-heading"><div><div class="eyebrow">${escapeHtml(subject.kicker)}</div><h1 tabindex="-1">${escapeHtml(subject.title)}</h1><p class="lede">${escapeHtml(subject.description)}</p></div><div class="route-counter"><strong>${subjectState.pending.length + (subjectState.current ? 1 : 0)}</strong><span>branches open</span></div></div>
+    <div class="quiz-meta"><span>${escapeHtml(subject.title)}</span><span>${state.subjectIndex + 1} / ${subjectDefinitions.length}</span></div>
     ${renderQuestion(subjectState)}
     ${renderStatus()}
-    <div class="quiz-actions"><button class="text-button" data-action="back">← Back</button><button class="primary-button" data-action="continue">Continue<span>→</span></button></div>
+    <div class="button-container quiz-actions"><button class="primary-button" data-action="continue">Continue</button><button class="text-button" data-action="back">Back</button></div>
   </section>`;
 }
 
 function renderResults() {
   const positions = subjectDefinitions.flatMap((subject) => (state.subjects[subject.id].selectedPositions || []).map((id) => ({ id, subject })));
   const headline = positions.length ? positions.slice(0, 3).map(({ id }) => positionName(id)).join(" · ") : "A profile waiting to be explored";
-  return `<section class="page-shell results-page">
-    <div class="results-hero"><div class="eyebrow">Your IdeoValues profile</div><h1 tabindex="-1">${escapeHtml(headline)}</h1><p class="lede">This is a composition of routes, not a score on a political axis. The most meaningful part of the result is the way your answers combine across independent subjects.</p><button class="primary-button" data-action="reset">Retake assessment<span>↻</span></button></div>
+  return `<section class="main-container results-page">
+    <div class="title-container"><h1 tabindex="-1">Your profile</h1></div>
+    <div class="label-bubble">${escapeHtml(headline)}</div>
+    <p class="intro-copy">A combination of routes across four independent subjects.</p>
     <div class="results-grid">${subjectDefinitions.map((subject) => {
       const subjectState = state.subjects[subject.id];
       const subjectPositions = subjectState.selectedPositions || [];
-      return `<article class="result-subject ${subject.color}"><div class="result-subject-head"><span class="card-kicker">${escapeHtml(subject.kicker)}</span><strong>${escapeHtml(subject.title)}</strong><span class="result-complete">Complete</span></div><div class="result-positions">${subjectPositions.map((id) => `<span>${escapeHtml(positionName(id))}</span>`).join("")}</div><div class="result-flow">${(subjectState.trail || []).slice(-3).map((step) => `<span>${escapeHtml(step.resultKind === "result" ? positionName(step.result) : step.answer)}</span>`).join("<b>→</b>")}</div></article>`;
+      return `<article class="result-subject"><h2>${escapeHtml(subject.title)}</h2><div class="result-positions">${subjectPositions.map((id) => `<span>${escapeHtml(positionName(id))}</span>`).join("")}</div><div class="result-flow">${(subjectState.trail || []).slice(-3).map((step) => `<span>${escapeHtml(step.resultKind === "result" ? positionName(step.result) : step.answer)}</span>`).join("<b>→</b>")}</div></article>`;
     }).join("")}</div>
-    <div class="disclaimer"><span class="disclaimer-mark">i</span><p>IdeoValues is a reflective tool, not a scientific diagnosis. Political traditions overlap, evolve, and contain internal disagreements. Your result is intentionally plural.</p></div>
+    <p class="disclaimer">IdeoValues is a reflective tool, not a scientific diagnosis.</p>
   </section>`;
 }
 
