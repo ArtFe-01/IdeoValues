@@ -1,0 +1,9 @@
+{
+  "name": "ideovalues",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "check": "node --check src/app.js && node --check src/core/tree-engine.js && node --check src/data/trees.js"
+  }
+}

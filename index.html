@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10131a" />
+    <meta name="description" content="IdeoValues is a flowchart-based political values assessment." />
+    <title>IdeoValues — map your political values</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <button class="brand" data-action="home" aria-label="Go to IdeoValues home">
+        <span class="brand-mark">IV</span>
+        <span>IdeoValues</span>
+      </button>
+      <div class="header-actions">
+        <button class="text-button" data-action="reset">Reset</button>
+        <button class="quiet-button" data-action="results">View profile</button>
+      </div>
+    </header>
+
+    <main id="app" aria-live="polite"></main>
+
+    <footer class="site-footer">
+      <span>Decision-tree assessment · no single political axis</span>
+      <span>Questions adapted from the linked NeoValues source</span>
+    </footer>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>

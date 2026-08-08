@@ -1,0 +1,1078 @@
+import { ideosorterLabels, ideosorterTree } from "./ideosorter-tree.js";
+
+/**
+ * Question content adapted from the NeoValues questions_tree.json source.
+ * Keep this file data-only: the engine and UI should not need to know its shape.
+ */
+export const sourceTrees = {
+  "economics": [
+    {
+      "id": "e1",
+      "text": "What is the primary foundation for organizing property and industry?",
+      "options": [
+        {
+          "text": "Private ownership and market-based competition",
+          "next": "e2.1"
+        },
+        {
+          "text": "State ownership of the means of production",
+          "next": "e2.2"
+        },
+        {
+          "text": "Direct ownership by workers or local community collectives",
+          "next": "e2.3"
+        },
+        {
+          "text": "Integration of society into state-organized industrial sectors",
+          "next": "e2.4"
+        },
+        {
+          "text": "Wide-spread distribution of small-scale private property",
+          "next": "e2.5"
+        },
+        {
+          "text": "A traditional hierarchy of land-based obligations and loyalty",
+          "next": "feudalism"
+        }
+      ]
+    },
+    {
+      "id": "e2.1",
+      "text": "How should the state interact with the private market?",
+      "options": [
+        {
+          "text": "The state should not interfere in the market at all",
+          "next": "e3.1"
+        },
+        {
+          "text": "The state should provide a moderate safety net and basic regulation",
+          "next": "welfare_capitalism"
+        },
+        {
+          "text": "The state should use heavy regulation and high taxation to ensure social equity",
+          "next": "social_capitalism"
+        },
+        {
+          "text": "The state should actively manage and steer the market without owning it",
+          "next": "e3.2"
+        }
+      ]
+    },
+    {
+      "id": "e3.1",
+      "text": "What is the ultimate role of the autonomous market?",
+      "options": [
+        {
+          "text": "To function within a minimal legal framework for order",
+          "next": "laissez_faire"
+        },
+        {
+          "text": "To act as a tool to bypass and eventually replace the state entirely",
+          "next": "countereconomics"
+        }
+      ]
+    },
+    {
+      "id": "e3.2",
+      "text": "By what method should the state manage the private economy?",
+      "options": [
+        {
+          "text": "By managing demand through fiscal policy and government spending",
+          "next": "keynesianism"
+        },
+        {
+          "text": "By synthesizing market competition with social justice and centrist policy",
+          "next": "third_way"
+        },
+        {
+          "text": "By directing investment and industrial policy through technocratic planning",
+          "next": "dirigisme"
+        },
+        {
+          "text": "By facilitating cooperative negotiation between the state, business, and labor unions",
+          "next": "neo_corporatism"
+        }
+      ]
+    },
+    {
+      "id": "e2.2",
+      "text": "What is the primary objective of state ownership?",
+      "options": [
+        {
+          "text": "To generate profit and power for the nation-state",
+          "next": "state_capitalism"
+        },
+        {
+          "text": "To fulfill social needs and eliminate the profit motive entirely",
+          "next": "state_socialism"
+        }
+      ]
+    },
+    {
+      "id": "e2.3",
+      "text": "How should the worker-led economy be structured?",
+      "options": [
+        {
+          "text": "Through decentralized, anti-authoritarian self-management",
+          "next": "e3.3"
+        },
+        {
+          "text": "Through the immediate abolition of money, wages, and the value-form",
+          "next": "communization"
+        },
+        {
+          "text": "Through the creation of intentional, voluntary moral communities",
+          "next": "utopian_socialism"
+        },
+        {
+          "text": "Through social ownership where goods are still traded in a market",
+          "next": "market_socialism"
+        }
+      ]
+    },
+    {
+      "id": "e3.3",
+      "text": "What is the mechanism of this decentralized management?",
+      "options": [
+        {
+          "text": "Direct exchange of 'labor for labor' between workers",
+          "next": "mutualism"
+        },
+        {
+          "text": "A federation of industrial labor unions",
+          "next": "syndicalism"
+        },
+        {
+          "text": "Semi-autonomous craft guilds",
+          "next": "guild_socialism"
+        },
+        {
+          "text": "Local communities based on individual liberty and social cooperation",
+          "next": "free_socialism"
+        }
+      ]
+    },
+    {
+      "id": "e2.4",
+      "text": "What is the goal of the state's organization of labor and industry?",
+      "options": [
+        {
+          "text": "Subordinating all private interests to the national interest",
+          "next": "corporatism"
+        },
+        {
+          "text": "Empowering workers' syndicates over the bourgeoisie within the state",
+          "next": "social_corporatism"
+        },
+        {
+          "text": "Maximizing the state's treasury and resources through administrative management",
+          "next": "cameralism"
+        },
+        {
+          "text": "Creating parallel unions that cooperate with management for profit-sharing",
+          "next": "yellow_socialism"
+        }
+      ]
+    },
+    {
+      "id": "e2.5",
+      "text": "How do you view the primary mechanism of widespread property distribution?",
+      "options": [
+        {
+          "text": "Through left-wing or social-oriented approaches (cooperatives, state redistribution, agrarianism)",
+          "next": "e3.5"
+        },
+        {
+          "text": "Through right-wing or market-oriented approaches (free markets, traditional property rights)",
+          "next": "e3.6"
+        }
+      ]
+    },
+    {
+      "id": "e3.5",
+      "text": "How should this left-wing distributed property be organized?",
+      "options": [
+        {
+          "text": "By centering the economy on the peasantry and small-scale farming",
+          "next": "agrarian_socialism"
+        },
+        {
+          "text": "By using the state to aggressively break up large capital concentrations",
+          "next": "social_distributism"
+        },
+        {
+          "text": "By using mutual-aid banks and local cooperatives",
+          "next": "mutual_distributism"
+        }
+      ]
+    },
+    {
+      "id": "e3.6",
+      "text": "How should this market-oriented distributed property be maintained?",
+      "options": [
+        {
+          "text": "By promoting 'small is beautiful' with minimal state intervention",
+          "next": "distributism"
+        },
+        {
+          "text": "Through completely free markets and voluntary contracts without state interference",
+          "next": "free_market_distributism"
+        }
+      ]
+    },
+    {
+      "id": "welfare_capitalism"
+    },
+    {
+      "id": "social_capitalism"
+    },
+    {
+      "id": "laissez_faire"
+    },
+    {
+      "id": "countereconomics"
+    },
+    {
+      "id": "state_capitalism"
+    },
+    {
+      "id": "state_socialism"
+    },
+    {
+      "id": "dirigisme"
+    },
+    {
+      "id": "keynesianism"
+    },
+    {
+      "id": "third_way"
+    },
+    {
+      "id": "neo_corporatism"
+    },
+    {
+      "id": "corporatism"
+    },
+    {
+      "id": "social_corporatism"
+    },
+    {
+      "id": "yellow_socialism"
+    },
+    {
+      "id": "mutualism"
+    },
+    {
+      "id": "guild_socialism"
+    },
+    {
+      "id": "syndicalism"
+    },
+    {
+      "id": "market_socialism"
+    },
+    {
+      "id": "free_socialism"
+    },
+    {
+      "id": "communization"
+    },
+    {
+      "id": "utopian_socialism"
+    },
+    {
+      "id": "mutual_distributism"
+    },
+    {
+      "id": "social_distributism"
+    },
+    {
+      "id": "agrarian_socialism"
+    },
+    {
+      "id": "distributism"
+    },
+    {
+      "id": "feudalism"
+    },
+    {
+      "id": "cameralism"
+    },
+    {
+      "id": "free_market_distributism"
+    }
+  ],
+  "resource_management": [
+    {
+      "id": "r1",
+      "text": "What is the most legitimate mechanism for funding shared needs or managing common wealth?",
+      "options": [
+        {
+          "text": "Levies on human productivity, such as income, profit, or trade.",
+          "next": "r2.1"
+        },
+        {
+          "text": "A levy on the value of land and natural resources, leaving labor and capital untouched.",
+          "next": "lvt"
+        },
+        {
+          "text": "The abolition of the distinction between private and public wealth; all resources are managed collectively.",
+          "next": "collective_distribution"
+        },
+        {
+          "text": "Strictly voluntary funding; no mandatory levies should exist.",
+          "next": "Voluntaryism"
+        }
+      ]
+    },
+    {
+      "id": "r2.1",
+      "text": "How should the burden of productivity-based contributions be structured?",
+      "options": [
+        {
+          "text": "A uniform percentage for all participants to maintain neutrality.",
+          "next": "flat_taxation"
+        },
+        {
+          "text": "A progressive scale where contributions increase with economic capacity.",
+          "next": "Progressive_Taxation"
+        },
+        {
+          "text": "Confiscatory rates on extreme wealth or inheritance to prevent economic dynasties.",
+          "next": "Confiscatory_Taxation"
+        }
+      ]
+    },
+    {
+      "id": "Voluntaryism"
+    },
+    {
+      "id": "lvt"
+    },
+    {
+      "id": "flat_taxation"
+    },
+    {
+      "id": "Progressive_Taxation"
+    },
+    {
+      "id": "Confiscatory_Taxation"
+    },
+    {
+      "id": "collective_distribution"
+    }
+  ],
+  "culture": [
+    {
+      "id": "c1",
+      "text": "Which statement best describes your view on the trajectory of human civilization?",
+      "options": [
+        {
+          "text": "We are gradually moving toward greater reason, liberty, and the correction of ancestral prejudices.",
+          "next": "c2.1"
+        },
+        {
+          "text": "We must preserve the inherited wisdom of the past while allowing for cautious, incremental improvement.",
+          "next": "c2.2"
+        },
+        {
+          "text": "Modernity is fundamentally flawed or in a state of terminal entropy; the current order is failing and spiritually hollow.",
+          "next": "c2.3"
+        },
+        {
+          "text": "There is no objective \"progress\" or \"truth\"; there are only competing narratives and structures of power that we must deconstruct.",
+          "next": "postmodernism"
+        }
+      ]
+    },
+    {
+      "id": "c2.1",
+      "text": "What should be the primary objective of cultural evolution?",
+      "options": [
+        {
+          "text": "The state should be a neutral arbiter, ensuring equal rights and opportunities for all citizens regardless of their cultural or ethnic identity",
+          "next": "civil_liberalism"
+        },
+        {
+          "text": "We should prioritize the maximum freedom of the individual to define their own lifestyle, liberated from the constraints of traditional dogma",
+          "next": "progressivism"
+        },
+        {
+          "text": "We must proactively dismantle historical hierarchies and systemic power structures to achieve true social equity",
+          "next": "social_progressivism"
+        }
+      ]
+    },
+    {
+      "id": "c2.2",
+      "text": "What is the most essential pillar for maintaining social cohesion?",
+      "options": [
+        {
+          "text": "The preservation of individual rights is the highest tradition; the \"old ways\" are best protected by leaving people alone.",
+          "next": "conservative_liberalism"
+        },
+        {
+          "text": "A synthesis of freedom and the active encouragement of traditional family structures and religious values",
+          "next": "liberal_conservatism"
+        },
+        {
+          "text": "We accept modern social shifts but implement them through established institutions",
+          "next": "progressive_conservatism"
+        },
+        {
+          "text": "Adherence to the specific customs, religious heritage, and historical identity of one’s own nation and people",
+          "next": "conservatism"
+        }
+      ]
+    },
+    {
+      "id": "c2.3",
+      "text": "How should we address the perceived failures of the modern era?",
+      "options": [
+        {
+          "text": "We should seek to return to the social hierarchies and political structures of a specific prior era",
+          "next": "reactionaryism"
+        },
+        {
+          "text": "Rejection of globalism and interventionism in favor of localism, national sovereignty, and the preservation of the distinct",
+          "next": "paleoconservatism"
+        },
+        {
+          "text": "A dismissal of democratic cathedra in favor of a clear, centralized, and technocratic authority",
+          "next": "neoreactionaryism"
+        },
+        {
+          "text": "A synthesis of romantic, traditionalist values with modern technology and industrial power",
+          "next": "reactionary_modernism"
+        },
+        {
+          "text": "A rejection of the secular world in favor of the universal, sacred truths found in ancient civilizations",
+          "next": "traditionalism"
+        }
+      ]
+    },
+    {
+      "id": "postmodernism"
+    },
+    {
+      "id": "civil_liberalism"
+    },
+    {
+      "id": "progressivism"
+    },
+    {
+      "id": "social_progressivism"
+    },
+    {
+      "id": "conservative_liberalism"
+    },
+    {
+      "id": "liberal_conservatism"
+    },
+    {
+      "id": "progressive_conservatism"
+    },
+    {
+      "id": "conservatism"
+    },
+    {
+      "id": "reactionaryism"
+    },
+    {
+      "id": "paleoconservatism"
+    },
+    {
+      "id": "neoreactionaryism"
+    },
+    {
+      "id": "traditionalism"
+    },
+    {
+      "id": "reactionary_modernism"
+    }
+  ],
+  "authority": [
+    {
+      "id": "a1",
+      "text": "How much power should the state have over the individual?",
+      "options": [
+        {
+          "text": "The state is necessary to organize society and enforce order",
+          "next": "a2.1"
+        },
+        {
+          "text": "The state should only exist to protect property and safety",
+          "next": "minarchism"
+        },
+        {
+          "text": "None; the state is inherently illegitimate",
+          "next": "a2.2"
+        }
+      ]
+    },
+    {
+      "id": "a2.1",
+      "text": "How should the governance of the state be structured?",
+      "options": [
+        {
+          "text": "Power should be concentrated in a central executive or leader",
+          "next": "a3.1"
+        },
+        {
+          "text": "Power should be shared between Monarch and Parliament",
+          "next": "constitutional"
+        },
+        {
+          "text": "Power should reside in a distinct class of the 'best' or 'noble' citizens",
+          "next": "a3.2"
+        },
+        {
+          "text": "Power should be exercised by the people or their representatives",
+          "next": "a3.3"
+        }
+      ]
+    },
+    {
+      "id": "a2.2",
+      "text": "In a stateless society, what is the role of a leader?",
+      "options": [
+        {
+          "text": "There are no leaders; total horizontal organization",
+          "next": "anarchism"
+        },
+        {
+          "text": "A symbolic or protective monarch who prevents the emergence of a state",
+          "next": "anarcho_monarchism"
+        }
+      ]
+    },
+    {
+      "id": "a3.1",
+      "text": "What is the source or nature of this centralized authority?",
+      "options": [
+        {
+          "text": "A traditional sovereign based on bloodline or tradition",
+          "next": "absolute"
+        },
+        {
+          "text": "A leader whose authority is derived from divine mandate or religious law",
+          "next": "a4.2"
+        },
+        {
+          "text": "A modern autocrat",
+          "next": "a4.3"
+        },
+        {
+          "text": "A joint-stock corporation where governance is handled by a CEO",
+          "next": "neocameralism"
+        }
+      ]
+    },
+    {
+      "id": "a4.2",
+      "text": "How is religious authority applied to the state?",
+      "options": [
+        {
+          "text": "The state is run directly by the priesthood",
+          "next": "theocracy"
+        },
+        {
+          "text": "A secular leader rules according to religious principles",
+          "next": "religious_authoritarianism"
+        }
+      ]
+    },
+    {
+      "id": "a4.3",
+      "text": "To what extent should this central power intervene?",
+      "options": [
+        {
+          "text": "The state controls every aspect of public and private life",
+          "next": "totalitarianism"
+        },
+        {
+          "text": "Power is concentrated, but private life remains largely autonomous",
+          "next": "autocracy"
+        }
+      ]
+    },
+    {
+      "id": "a3.2",
+      "text": "What qualifies this elite group to lead?",
+      "options": [
+        {
+          "text": "Inherited status and noble birth",
+          "next": "aristocracy"
+        },
+        {
+          "text": "Scientific expertise, engineering, and technical data",
+          "next": "technocracy"
+        },
+        {
+          "text": "Demonstrated talent, achievement, or intellectual merit",
+          "next": "meritocracy"
+        },
+        {
+          "text": "Command within the military hierarchy",
+          "next": "stratocracy"
+        }
+      ]
+    },
+    {
+      "id": "a3.3",
+      "text": "How should the will of the people be exercised?",
+      "options": [
+        {
+          "text": "Citizens vote on every major policy and law themselves",
+          "next": "direct_democracy"
+        },
+        {
+          "text": "Citizens elect officials to make decisions on their behalf",
+          "next": "representative_democracy"
+        },
+        {
+          "text": "Through a single revolutionary party that represents the working class",
+          "next": "partocracy"
+        }
+      ]
+    },
+    {
+      "id": "theocracy"
+    },
+    {
+      "id": "absolute"
+    },
+    {
+      "id": "constitutional"
+    },
+    {
+      "id": "totalitarianism"
+    },
+    {
+      "id": "religious_authoritarianism"
+    },
+    {
+      "id": "autocracy"
+    },
+    {
+      "id": "anarchism"
+    },
+    {
+      "id": "minarchism"
+    },
+    {
+      "id": "partocracy"
+    },
+    {
+      "id": "meritocracy"
+    },
+    {
+      "id": "technocracy"
+    },
+    {
+      "id": "representative_democracy"
+    },
+    {
+      "id": "direct_democracy"
+    },
+    {
+      "id": "stratocracy"
+    },
+    {
+      "id": "aristocracy"
+    },
+    {
+      "id": "anarcho_monarchism"
+    },
+    {
+      "id": "neocameralism"
+    }
+  ],
+  "nation": [
+    {
+      "id": "n1",
+      "text": "What is the primary source of an individual’s identity and loyalty?",
+      "options": [
+        {
+          "text": "The global human community",
+          "next": "n2.1"
+        },
+        {
+          "text": "A shared legal system, political values, or common culture",
+          "next": "n2.2"
+        },
+        {
+          "text": "The local community and shared social bonds as the foundation of society",
+          "next": "communitarianism"
+        },
+        {
+          "text": "Biological descent, shared ancestry, or the blood",
+          "next": "n2.3"
+        },
+        {
+          "text": "The unique individual self",
+          "next": "egoism"
+        }
+      ]
+    },
+    {
+      "id": "n2.1",
+      "text": "How should the world be organized?",
+      "options": [
+        {
+          "text": "Through a cooperative system of sovereign nations working together.",
+          "next": "Internationalism"
+        },
+        {
+          "text": "Through a borderless world where everyone is a \"citizen of the world.\"",
+          "next": "Cosmopolitanism"
+        }
+      ]
+    },
+    {
+      "id": "n2.2",
+      "text": "What defines the national bond?",
+      "options": [
+        {
+          "text": "Adherence to the Constitution, the law, and civic participation.",
+          "next": "civic_nationalism"
+        },
+        {
+          "text": "Adherence to a specific language, religion, and historical heritage.",
+          "next": "cultural_nationalism"
+        }
+      ]
+    },
+    {
+      "id": "n2.3",
+      "text": "At what scale should biological identity be organized?",
+      "options": [
+        {
+          "text": "The local, organic group or clan",
+          "next": "Tribalism"
+        },
+        {
+          "text": "A specific ethnic group tied to a historical homeland and state",
+          "next": "ethnic_nationalism"
+        },
+        {
+          "text": "A broad group of related ethnicities",
+          "next": "pan_nationalism"
+        },
+        {
+          "text": "The entire race as a single unit, transcending all specific ethnic or national lines",
+          "next": "racial_nationalism"
+        }
+      ]
+    },
+    {
+      "id": "Internationalism"
+    },
+    {
+      "id": "Cosmopolitanism"
+    },
+    {
+      "id": "civic_nationalism"
+    },
+    {
+      "id": "cultural_nationalism"
+    },
+    {
+      "id": "ethnic_nationalism"
+    },
+    {
+      "id": "pan_nationalism"
+    },
+    {
+      "id": "racial_nationalism"
+    },
+    {
+      "id": "Tribalism"
+    },
+    {
+      "id": "egoism"
+    },
+    {
+      "id": "communitarianism"
+    }
+  ],
+  "foreign": [
+    {
+      "id": "f1",
+      "text": "What should be the primary goal of our country's actions on the world stage?",
+      "options": [
+        {
+          "text": "Protecting our own borders and remaining self-sufficient",
+          "next": "f2.1"
+        },
+        {
+          "text": "Managing power dynamics to ensure our national survival and advantage",
+          "next": "f2.2"
+        },
+        {
+          "text": "Spreading our values or maintaining global stability for the good of all",
+          "next": "f2.3"
+        }
+      ]
+    },
+    {
+      "id": "f2.1",
+      "text": "To what extent should we interact with others?",
+      "options": [
+        {
+          "text": "We should have no political, military, or significant economic ties",
+          "next": "Isolationism"
+        },
+        {
+          "text": "We should trade and talk with others, but strictly refuse to interfere in their internal conflicts or wars",
+          "next": "Non_Interventionism"
+        },
+        {
+          "text": "We should maintain strong military readiness and defense, but strictly avoid all foreign alliances and conflicts.",
+          "next": "armed_neutrality"
+        }
+      ]
+    },
+    {
+      "id": "f2.2",
+      "text": "How should we exert our influence?",
+      "options": [
+        {
+          "text": "By forming alliances only when they benefit us, regardless of the other country's morals",
+          "next": "Realpolitik"
+        },
+        {
+          "text": "By actively expanding our territory or controlling other nations' resources and politics to benefit our own",
+          "next": "Imperialism"
+        }
+      ]
+    },
+    {
+      "id": "f2.3",
+      "text": "How should we lead the global community?",
+      "options": [
+        {
+          "text": "By using our military and political power to step into foreign conflicts to stop bad actors or protect human rights",
+          "next": "Interventionism"
+        },
+        {
+          "text": "By moving toward a unified global system of laws, open borders, and international governing bodies",
+          "next": "Globalism"
+        }
+      ]
+    },
+    {
+      "id": "Isolationism"
+    },
+    {
+      "id": "Non_Interventionism"
+    },
+    {
+      "id": "Realpolitik"
+    },
+    {
+      "id": "Imperialism"
+    },
+    {
+      "id": "Interventionism"
+    },
+    {
+      "id": "Globalism"
+    },
+    {
+      "id": "armed_neutrality"
+    }
+  ]
+};
+
+sourceTrees.ideosorter = ideosorterTree;
+
+export const subjectDefinitions = [
+  {
+    id: "socioeconomics",
+    title: "Socioeconomics",
+    kicker: "Material life",
+    description: "How should ownership, production, taxation, and common wealth be organized?",
+    color: "amber",
+    roots: [
+      { label: "Property & industry", tree: "economics", node: "e1" },
+      { label: "Common wealth & taxation", tree: "resource_management", node: "r1" },
+      { label: "Property & government scope", tree: "ideosorter", node: "private_property" }
+    ]
+  },
+  {
+    id: "geopolitics",
+    title: "Geopolitics",
+    kicker: "The world beyond borders",
+    description: "How should a political community understand identity, sovereignty, power, and cooperation?",
+    color: "cyan",
+    roots: [
+      { label: "Foreign posture", tree: "foreign", node: "f1" },
+      { label: "Identity & nation", tree: "nation", node: "n1" }
+    ]
+  },
+  {
+    id: "statecraft",
+    title: "Statecraft",
+    kicker: "Power & institutions",
+    description: "What makes authority legitimate, and how should collective decisions be made?",
+    color: "violet",
+    roots: [{ label: "Government structure", tree: "authority", node: "a1" }]
+  },
+  {
+    id: "culture",
+    title: "Culture",
+    kicker: "Social direction",
+    description: "How should a society relate to tradition, modernity, liberty, and cultural change?",
+    color: "rose",
+    roots: [{ label: "Civilizational direction", tree: "culture", node: "c1" }]
+  }
+];
+
+// Questions are single-answer by default. These are the deliberately plural
+// exceptions. They can accept up to three answers; compatibility rules decide
+// whether the selected routes can coexist.
+export const selectionLimits = {
+  // Socioeconomics: mixed systems and mechanisms can coexist.
+  "economics:e1": 3,
+  "economics:e2.1": 3,
+  "economics:e3.2": 3,
+  "economics:e3.3": 3,
+  "economics:e3.5": 3,
+  "economics:e3.6": 3,
+  "resource_management:r1": 3,
+
+  // Geopolitics: foreign-policy aims and layered identity can overlap.
+  "foreign:f1": 3,
+  "foreign:f2.1": 3,
+  "foreign:f2.2": 3,
+  "foreign:f2.3": 3,
+  "nation:n1": 3,
+  "nation:n2.1": 3,
+  "nation:n2.2": 3,
+  "nation:n2.3": 3,
+
+  // Culture: these traditions describe overlapping tendencies rather than
+  // mutually exclusive institutions.
+  "culture:c2.1": 3,
+  "culture:c2.2": 3,
+  "culture:c2.3": 3,
+
+  // Statecraft: an elite can have several sources of qualification, and a
+  // democracy can combine direct and representative mechanisms.
+  "authority:a3.2": 3,
+  "authority:a3.3": 3
+};
+
+/**
+ * These are intentionally narrow guardrails for positions that cannot be
+ * selected together in the same subject. They do not compare subjects.
+ */
+export const incompatiblePairs = {
+  socioeconomics: [
+    ["Voluntaryism", "lvt"],
+    ["Voluntaryism", "flat_taxation"],
+    ["Voluntaryism", "Progressive_Taxation"],
+    ["Voluntaryism", "Confiscatory_Taxation"],
+    ["Voluntaryism", "collective_distribution"],
+    ["collective_distribution", "lvt"],
+    ["collective_distribution", "flat_taxation"],
+    ["collective_distribution", "Progressive_Taxation"],
+    ["collective_distribution", "Confiscatory_Taxation"],
+    ["laissez_faire", "state_socialism"],
+    ["laissez_faire", "state_capitalism"],
+    ["free_market_distributism", "state_socialism"],
+    ["feudalism", "communization"]
+  ],
+  geopolitics: [
+    ["Isolationism", "Globalism"],
+    ["Isolationism", "Imperialism"],
+    ["Isolationism", "Interventionism"],
+    ["Non_Interventionism", "Interventionism"],
+    ["Cosmopolitanism", "ethnic_nationalism"],
+    ["Cosmopolitanism", "racial_nationalism"],
+    ["Cosmopolitanism", "Tribalism"]
+  ],
+  statecraft: [
+    ["anarchism", "absolute"],
+    ["anarchism", "constitutional"],
+    ["anarchism", "totalitarianism"],
+    ["anarchism", "autocracy"],
+    ["anarchism", "theocracy"],
+    ["anarchism", "representative_democracy"],
+    ["anarchism", "direct_democracy"],
+    ["anarchism", "partocracy"],
+    ["anarchism", "technocracy"],
+    ["anarchism", "meritocracy"],
+    ["anarchism", "stratocracy"],
+    ["anarchism", "aristocracy"],
+    ["anarchism", "minarchism"],
+    ["anarchism", "neocameralism"],
+    ["minarchism", "totalitarianism"],
+    ["absolute", "direct_democracy"],
+    ["partocracy", "direct_democracy"],
+    ["partocracy", "representative_democracy"]
+  ],
+  culture: [
+    ["progressivism", "traditionalism"],
+    ["progressivism", "reactionaryism"],
+    ["social_progressivism", "conservatism"],
+    ["social_progressivism", "traditionalism"]
+  ]
+};
+
+// Direct answer-level guardrails for plural-capable questions. Most
+// incompatibilities are evaluated from terminal positions; these handle
+// obvious contradictions before a branch is opened.
+export const incompatibleOptionPairs = {
+  "economics:e2.1": [[0, 1], [0, 2], [0, 3]],
+  "foreign:f2.1": [[0, 1]],
+  "authority:a3.3": [[0, 2], [1, 2]]
+};
+
+export const positionLabels = {
+  Voluntaryism: "Voluntaryism",
+  flat_taxation: "Flat taxation",
+  Progressive_Taxation: "Progressive taxation",
+  Confiscatory_Taxation: "Confiscatory taxation",
+  collective_distribution: "Collective distribution",
+  laissez_faire: "Laissez-faire",
+  state_socialism: "State socialism",
+  state_capitalism: "State capitalism",
+  free_market_distributism: "Free-market distributism",
+  feudalism: "Feudalism",
+  communization: "Communization",
+  Isolationism: "Isolationism",
+  Globalism: "Globalism",
+  Imperialism: "Imperialism",
+  Interventionism: "Interventionism",
+  Non_Interventionism: "Non-interventionism",
+  Cosmopolitanism: "Cosmopolitanism",
+  ethnic_nationalism: "Ethnic nationalism",
+  racial_nationalism: "Racial nationalism",
+  Tribalism: "Tribalism",
+  anarchism: "Anarchism",
+  absolute: "Absolute monarchy",
+  constitutional: "Constitutional monarchy",
+  totalitarianism: "Totalitarianism",
+  autocracy: "Autocracy",
+  theocracy: "Theocracy",
+  representative_democracy: "Representative democracy",
+  direct_democracy: "Direct democracy",
+  partocracy: "Partocracy",
+  technocracy: "Technocracy",
+  meritocracy: "Meritocracy",
+  stratocracy: "Stratocracy",
+  aristocracy: "Aristocracy",
+  minarchism: "Minarchism",
+  neocameralism: "Neocameralism",
+  progressivism: "Progressivism",
+  traditionalism: "Traditionalism",
+  reactionaryism: "Reactionaryism",
+  social_progressivism: "Social progressivism",
+  conservatism: "Conservatism"
+};
+
+export const labelFor = (id) => positionLabels[id] || id.replaceAll("_", " ");
+
+Object.assign(positionLabels, ideosorterLabels);
