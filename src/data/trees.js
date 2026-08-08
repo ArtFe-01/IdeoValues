@@ -4,7 +4,7 @@ import { ideosorterLabels, ideosorterTree } from "./ideosorter-tree.js";
  * Question content adapted from the NeoValues questions_tree.json source.
  * Keep this file data-only: the engine and UI should not need to know its shape.
  */
-export const sourceTrees = {
+const rawSourceTrees = {
   "economics": [
     {
       "id": "e1",
@@ -885,6 +885,23 @@ export const sourceTrees = {
   ]
 };
 
+function normalizeSourceTrees(trees) {
+  return Object.fromEntries(Object.entries(trees).map(([treeId, nodes]) => {
+    const questionIds = new Set(nodes.filter((node) => node.options?.length).map((node) => node.id));
+    return [treeId, nodes.map((node) => ({
+      ...node,
+      options: node.options?.map((option) => ({
+        text: option.text,
+        target: {
+          kind: questionIds.has(option.next) ? "question" : "result",
+          id: option.next
+        }
+      }))
+    }))];
+  }));
+}
+
+export const sourceTrees = normalizeSourceTrees(rawSourceTrees);
 sourceTrees.ideosorter = ideosorterTree;
 
 export const subjectDefinitions = [
@@ -929,40 +946,37 @@ export const subjectDefinitions = [
   }
 ];
 
-// Questions are single-answer by default. These are the deliberately plural
-// exceptions. They can accept up to three answers; compatibility rules decide
-// whether the selected routes can coexist.
-export const selectionLimits = {
-  // Socioeconomics: mixed systems and mechanisms can coexist.
-  "economics:e1": 3,
-  "economics:e2.1": 3,
-  "economics:e3.2": 3,
-  "economics:e3.3": 3,
-  "economics:e3.5": 3,
-  "economics:e3.6": 3,
-  "resource_management:r1": 3,
-
-  // Geopolitics: foreign-policy aims and layered identity can overlap.
-  "foreign:f1": 3,
-  "foreign:f2.1": 3,
-  "foreign:f2.2": 3,
-  "foreign:f2.3": 3,
-  "nation:n1": 3,
-  "nation:n2.1": 3,
-  "nation:n2.2": 3,
-  "nation:n2.3": 3,
-
-  // Culture: these traditions describe overlapping tendencies rather than
-  // mutually exclusive institutions.
-  "culture:c2.1": 3,
-  "culture:c2.2": 3,
-  "culture:c2.3": 3,
-
-  // Statecraft: an elite can have several sources of qualification, and a
-  // democracy can combine direct and representative mechanisms.
-  "authority:a3.2": 3,
-  "authority:a3.3": 3
+// Questions are single-answer by default. These explicit policies allow
+// broad combinations only where the source wording supports them.
+export const selectionPolicies = {
+  "economics:e1": { mode: "multiple", maxSelections: 3 },
+  "economics:e2.1": { mode: "multiple", maxSelections: 3, incompatibleOptions: [[0, 1], [0, 2], [0, 3]] },
+  "economics:e2.3": { mode: "multiple", maxSelections: 3, incompatibleOptions: [[1, 3]] },
+  "economics:e2.4": { mode: "multiple", maxSelections: 3 },
+  "economics:e3.2": { mode: "multiple", maxSelections: 3 },
+  "economics:e3.3": { mode: "multiple", maxSelections: 3 },
+  "economics:e3.5": { mode: "multiple", maxSelections: 3 },
+  "economics:e3.6": { mode: "multiple", maxSelections: 3 },
+  "resource_management:r1": { mode: "multiple", maxSelections: 3 },
+  "foreign:f1": { mode: "multiple", maxSelections: 3 },
+  "foreign:f2.1": { mode: "multiple", maxSelections: 3, incompatibleOptions: [[0, 1]] },
+  "foreign:f2.2": { mode: "multiple", maxSelections: 3 },
+  "foreign:f2.3": { mode: "multiple", maxSelections: 3 },
+  "nation:n1": { mode: "multiple", maxSelections: 3 },
+  "nation:n2.1": { mode: "multiple", maxSelections: 3 },
+  "nation:n2.2": { mode: "multiple", maxSelections: 3 },
+  "nation:n2.3": { mode: "multiple", maxSelections: 3 },
+  "culture:c2.1": { mode: "multiple", maxSelections: 3 },
+  "culture:c2.2": { mode: "multiple", maxSelections: 3 },
+  "culture:c2.3": { mode: "multiple", maxSelections: 3 },
+  "authority:a2.1": { mode: "multiple", maxSelections: 3 },
+  "authority:a3.2": { mode: "multiple", maxSelections: 3 },
+  "authority:a3.3": { mode: "multiple", maxSelections: 3, incompatibleOptions: [[0, 2], [1, 2]] }
 };
+
+export const selectionLimits = Object.fromEntries(
+  Object.entries(selectionPolicies).map(([routeId, policy]) => [routeId, policy.maxSelections])
+);
 
 /**
  * These are intentionally narrow guardrails for positions that cannot be
@@ -1021,14 +1035,11 @@ export const incompatiblePairs = {
   ]
 };
 
-// Direct answer-level guardrails for plural-capable questions. Most
-// incompatibilities are evaluated from terminal positions; these handle
-// obvious contradictions before a branch is opened.
-export const incompatibleOptionPairs = {
-  "economics:e2.1": [[0, 1], [0, 2], [0, 3]],
-  "foreign:f2.1": [[0, 1]],
-  "authority:a3.3": [[0, 2], [1, 2]]
-};
+export const incompatibleOptionPairs = Object.fromEntries(
+  Object.entries(selectionPolicies)
+    .filter(([, policy]) => policy.incompatibleOptions?.length)
+    .map(([routeId, policy]) => [routeId, policy.incompatibleOptions])
+);
 
 export const positionLabels = {
   Voluntaryism: "Voluntaryism",
@@ -1070,7 +1081,45 @@ export const positionLabels = {
   traditionalism: "Traditionalism",
   reactionaryism: "Reactionaryism",
   social_progressivism: "Social progressivism",
-  conservatism: "Conservatism"
+  conservatism: "Conservatism",
+  Internationalism: "Internationalism",
+  Realpolitik: "Realpolitik",
+  agrarian_socialism: "Agrarian socialism",
+  anarcho_monarchism: "Anarcho-monarchism",
+  armed_neutrality: "Armed neutrality",
+  cameralism: "Cameralism",
+  civic_nationalism: "Civic nationalism",
+  civil_liberalism: "Civil liberalism",
+  communitarianism: "Communitarianism",
+  conservative_liberalism: "Conservative liberalism",
+  corporatism: "Corporatism",
+  countereconomics: "Counter-economics",
+  cultural_nationalism: "Cultural nationalism",
+  dirigisme: "Dirigisme",
+  egoism: "Egoism",
+  free_socialism: "Free socialism",
+  guild_socialism: "Guild socialism",
+  keynesianism: "Keynesianism",
+  liberal_conservatism: "Liberal conservatism",
+  lvt: "Land-value taxation",
+  market_socialism: "Market socialism",
+  mutual_distributism: "Mutual distributism",
+  neo_corporatism: "Neo-corporatism",
+  neoreactionaryism: "Neoreactionaryism",
+  paleoconservatism: "Paleoconservatism",
+  pan_nationalism: "Pan-nationalism",
+  postmodernism: "Postmodernism",
+  progressive_conservatism: "Progressive conservatism",
+  reactionary_modernism: "Reactionary modernism",
+  religious_authoritarianism: "Religious authoritarianism",
+  social_capitalism: "Social capitalism",
+  social_corporatism: "Social corporatism",
+  social_distributism: "Social distributism",
+  syndicalism: "Syndicalism",
+  third_way: "Third way",
+  utopian_socialism: "Utopian socialism",
+  welfare_capitalism: "Welfare capitalism",
+  yellow_socialism: "Yellow socialism"
 };
 
 export const labelFor = (id) => positionLabels[id] || id.replaceAll("_", " ");
